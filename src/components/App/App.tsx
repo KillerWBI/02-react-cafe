@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { Votes, VoteType } from "../../types/votes";
 import CafeInfo from "../CafeInfo/CafeInfo";
+import { Notification } from "../Notification/Notification";
 import { VoteOptions } from "../VoteOptions/VoteOptions";
 import { VoteStats } from "../VoteStats/VoteStats";
 import css from "./App.module.css";
@@ -14,6 +15,8 @@ export default function App() {
     neutral: 0,
     bad: 0,
   });
+const totalVotes = votes.good + votes.neutral + votes.bad;
+const positiveRate = totalVotes ? Math.floor((votes.good / totalVotes) * 100) : 0;
 
   // функция для добавления голоса
   const handleVote = (type: VoteType) => {
@@ -32,7 +35,15 @@ export default function App() {
   <div className={css.app}>
     <CafeInfo />
     <VoteOptions onVote={handleVote} onReset={resetVotes} canReset={Boolean(votes.good || votes.neutral || votes.bad)}/>
-    <VoteStats votes={votes}/>
+    {totalVotes === 0 ? (
+        <Notification />
+      ) : (
+        <VoteStats
+          votes={votes}
+          totalVotes={totalVotes}
+          positiveRate={positiveRate}
+        />
+      )}
   </div>
 );
 }
