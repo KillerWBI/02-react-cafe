@@ -1,9 +1,9 @@
 import { useState } from "react";
+import type { Votes, VoteType } from "../../types/votes";
+import CafeInfo from "../Cafeinfo/Cafeinfo";
+import { VoteOptions } from "../VoteOptions/VoteOptions";
+import { VoteStats } from "../VoteStats/VoteStats";
 import css from "./App.module.css";
-import CafeInfo from "./components/Cafeinfo/Cafeinfo";
-import { VoteOptions } from "./components/VoteOptions/VoteOptions";
-import { VoteStats } from "./components/VoteStats/VoteStats";
-import type { Votes, VoteType } from "./types/votes";
 
 // сюда позже добавим VoteOptions и VoteStats
 
